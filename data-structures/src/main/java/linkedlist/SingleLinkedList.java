@@ -1,5 +1,8 @@
 package linkedlist;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class SingleLinkedList {
 
     private Node start;
@@ -22,14 +25,11 @@ public class SingleLinkedList {
         if (start == null) {
             return;
         }
-        
         if (start.getNext() == null) {
             start = null;
         }
         else {
-            Node deletedNode = start;
             start = start.getNext();
-            deletedNode = null;
         }
     }
     
@@ -47,7 +47,7 @@ public class SingleLinkedList {
             start = null;
         }
         else {
-            previousNode.next = null;
+            previousNode.setNext(null);
         }
     }
     
@@ -57,8 +57,25 @@ public class SingleLinkedList {
         while (currentNode != null) {
             list.append(currentNode.getValue());
             list.append(">>");
-            currentNode = currentNode.next;
+            currentNode = currentNode.getNext();
         }
         return list.toString();
     }
+    
+    public void removeDuplicates() {
+        Set<Integer> integerSet = new HashSet<>();
+        Node currentNode = start;
+        Node previousNode = null;
+        while (currentNode != null) {
+            if (integerSet.contains(currentNode.getValue())) {
+                previousNode.setNext(currentNode.getNext());
+            }
+            else {
+                integerSet.add(currentNode.getValue());
+                previousNode = currentNode;
+            }
+            currentNode = currentNode.getNext();
+        }
+    }
+
 }
