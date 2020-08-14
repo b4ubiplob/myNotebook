@@ -68,7 +68,9 @@ public class SingleLinkedList {
         Node previousNode = null;
         while (currentNode != null) {
             if (integerSet.contains(currentNode.getValue())) {
-                previousNode.setNext(currentNode.getNext());
+                if (previousNode != null) {
+                    previousNode.setNext(currentNode.getNext());
+                }
             }
             else {
                 integerSet.add(currentNode.getValue());
@@ -78,4 +80,21 @@ public class SingleLinkedList {
         }
     }
 
+    public int getValueFromLastNode(int index) {
+        if (start == null) {
+            return -1;
+        }
+        int length = 0;
+        Node currentNode = start;
+        while (currentNode != null) {
+            length++;
+            currentNode = currentNode.getNext();
+        }
+        int indexFromStart = length - index;
+        currentNode = start;
+        for (int i = 0; i < indexFromStart; i++) {
+            currentNode = currentNode.getNext();
+        }
+        return currentNode.getValue();
+    }
 }

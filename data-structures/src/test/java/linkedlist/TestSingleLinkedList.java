@@ -70,4 +70,22 @@ public class TestSingleLinkedList {
         assertEquals("1>>2>>3>>", singleLinkedList.getLinkedList());
     }
 
+    
+    @Test
+    public void testGetValuefromLatsNodeIndex() {
+        SingleLinkedList singleLinkedList = new SingleLinkedList();
+        assertEquals("", singleLinkedList.getLinkedList());
+        singleLinkedList.addNode(1);
+        singleLinkedList.addNode(2);
+        singleLinkedList.addNode(2);
+        singleLinkedList.addNode(3);
+        singleLinkedList.addNode(3);
+
+        assertEquals("1>>2>>2>>3>>3>>", singleLinkedList.getLinkedList());
+        int value = singleLinkedList.getValueFromLastNode(2);
+        assertEquals(3, value);
+        value = singleLinkedList.getValueFromLastNode(3);
+        assertEquals(2, value);
+    }
+
 }
